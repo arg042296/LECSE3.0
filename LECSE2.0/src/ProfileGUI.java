@@ -28,7 +28,7 @@ public class ProfileGUI {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		//Load the database
-		Database db = new Database();		
+		Database db = new Database();	// HI	
 		db.loadUserInfo();
 		db.loadCourseInstructor();
 		db.loadLectures();
