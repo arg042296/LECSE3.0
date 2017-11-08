@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -13,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,40 +33,39 @@ public class ProfileGUI {
 		db.loadCourseInstructor();
 		db.loadLectures();
 
-
-		JFrame frame = new JFrame();
-		frame.setSize(900, 1000);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new FlowLayout()); 
-
+		//Create a text field for the name 
 		JTextField name = new JTextField(db.getName());
 		name.setEditable(false);
-		name.setPreferredSize(new Dimension(520,45));
-		name.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		name.setPreferredSize(new Dimension(460,45));
+		name.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 		name.setBackground(Color.WHITE);
 		name.setBorder(null);
 
+		//Create a text field for the major
 		JTextField major = new JTextField(db.getMajor());
 		major.setEditable(false);
-		major.setPreferredSize(new Dimension(520,45));
-		major.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		major.setPreferredSize(new Dimension(460,45));
+		major.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 		major.setBackground(Color.WHITE);
 		major.setBorder(null);
 
+		//Create a text field for the university
 		JTextField university = new JTextField(db.getUniversity());
 		university.setEditable(false);
-		university.setPreferredSize(new Dimension(520,45));
-		university.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		university.setPreferredSize(new Dimension(460,45));
+		university.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 		university.setBackground(Color.WHITE);
 		university.setBorder(null);
 
+		//Create a text field for the sorting selection
 		JTextField sort = new JTextField(db.getSortSelection());
 		sort.setEditable(false);
-		sort.setPreferredSize(new Dimension(520,45));
-		sort.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		sort.setPreferredSize(new Dimension(460,45));
+		sort.setFont(new Font("Segoe UI", Font.PLAIN, 22));
 		sort.setBackground(Color.WHITE);
 		sort.setBorder(null);
 
+		//Create the header and titles
 		JLabel header = new JLabel("Profile");
 		JLabel title1 = new JLabel("NAME");
 		JLabel title2 = new JLabel("MAJOR");
@@ -72,65 +73,77 @@ public class ProfileGUI {
 		JLabel title4 = new JLabel("INSTRUCTORS");
 		JLabel title5 = new JLabel("COURSES");
 		JLabel title6 = new JLabel("SORT BY");
-
+		
+		//Set the font of the header and titles
 		header.setFont(new Font("Segoe UI", Font.PLAIN, 50));
-		title1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		title2.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		title3.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		title4.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		title5.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		title6.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		title1.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		title2.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		title3.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		title4.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		title5.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		title6.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 
-
+		//Create a new JPanel with a GridBagLayout and constraints
 		JPanel p = new JPanel(new GridBagLayout());
+		p.setPreferredSize(new Dimension(500,900));
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.insets = new Insets(0, 10, 0, 0);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.weightx = 1;
+		gbc.weighty = 0;
 		gbc.fill = GridBagConstraints.NONE;
 		p.setBackground(Color.white);
+		
+		//Add the header
 		p.add(header, gbc);
 
+		//Add the first title
 		gbc.gridy++;
 		gbc.insets = new Insets(20, 10, 0, 0);
 		p.add(title1, gbc);
 
+		//Add the name text field
 		gbc.gridy++;
 		gbc.insets = new Insets(0, 10, 0, 0);
 		p.add(name, gbc);
 
+		//Add the second title
 		gbc.gridy++;
 		gbc.insets = new Insets(20, 10, 0, 0);
 		p.add(title2, gbc);
 
+		//Add the major text field 
 		gbc.gridy++;
 		gbc.insets = new Insets(0, 10, 0, 0);
 		p.add(major, gbc);
 
+		//Add the third title
 		gbc.gridy++;
 		gbc.insets = new Insets(20, 10, 0, 0);
 		p.add(title3, gbc);
 
+		//Add the university text field
 		gbc.gridy++;
 		gbc.insets = new Insets(0, 10, 0, 0);
 		p.add(university, gbc);
 
+		//Add the fourth title
 		gbc.gridy++;
 		gbc.insets = new Insets(20, 10, 0, 0);
 		p.add(title6, gbc);
 
+		//Add the sorting selection text field
 		gbc.gridy++;
 		gbc.insets = new Insets(0, 10, 0, 0);
 		p.add(sort, gbc);
 
 		//Create a combo box
-		String[] choices = {"Edit personal information", "Save Changes", "Change sorting selection"};
+		String[] choices = {"","Edit personal information", "Save Changes", "Change sorting selection"};
 		JComboBox<String> menu = new JComboBox<String>(choices);
 		menu.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menu.setPreferredSize(new Dimension(195,35));
-
+		//Add an action to the different choices of the combo box
 		menu.addActionListener(new ActionListener() {
 
 			@Override
@@ -194,13 +207,13 @@ public class ProfileGUI {
 					instructor.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							db.setSortSelection("instructor");
+							db.setSortSelection("Instructor");
 							try {
-								db.changePersonalInfo("instructor", 3);
+								db.changePersonalInfo("Instructor", 3);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
-							sort.setText("instructor");
+							sort.setText("Instructor");
 							//Close frame
 							sortFrame.setVisible(false);;
 						}
@@ -209,13 +222,13 @@ public class ProfileGUI {
 					course.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							db.setSortSelection("course");
+							db.setSortSelection("Course");
 							try {
-								db.changePersonalInfo("course", 3);
+								db.changePersonalInfo("Course", 3);
 							} catch (IOException e1) {
 								e1.printStackTrace();
 							}
-							sort.setText("course");
+							sort.setText("Course");
 							//Close frame
 							sortFrame.setVisible(false);;
 						}
@@ -236,15 +249,40 @@ public class ProfileGUI {
 			}
 
 		});
-
+		
+		gbc.weighty = 1;
 		gbc.gridy++;
 		gbc.insets = new Insets(20, 10, 0, 0);
 		p.add(menu, gbc);
-
-		gbc.gridy = 1;
-		gbc.gridx = 1;
-		gbc.insets = new Insets(20, 10, 0, 0);
-		p.add(title4, gbc);
+		
+		
+		//Create a button 
+		JButton help = new JButton("HELP");
+		help.setPreferredSize(new Dimension(100,30));
+		help.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		help.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Create Help page here!!!!!!!!!!!!!!!
+			}
+		});
+		
+		
+		JPanel p3 = new JPanel(new GridBagLayout());
+		p3.setPreferredSize(new Dimension(400,900));
+		GridBagConstraints gbc3 = new GridBagConstraints();
+		gbc3.anchor = GridBagConstraints.NORTHWEST;
+		gbc3.insets = new Insets(0, 0, 0, 0);
+		gbc3.gridx = 0;
+		gbc3.gridy = 0;
+		gbc3.weighty = 0;
+		gbc3.fill = GridBagConstraints.NONE;
+		p3.setBackground(Color.white);
+		p3.add(help, gbc3);
+		
+		gbc3.gridy++;
+		gbc3.insets = new Insets(55, 0, 0, 0);
+		p3.add(title4, gbc3);
 
 		//Get the array of courses and instructors
 		String[][] ci = db.getCourseAndINstructor();	    
@@ -253,44 +291,52 @@ public class ProfileGUI {
 		for(int i = 0; i < ci.length; i++) {
 			if(ci[i][1] != null) {
 				JLabel instructor = new JLabel(ci[i][1]);
-				instructor.setFont(new Font("Segoe UI", Font.PLAIN, 30));
-				gbc.gridy++;
-				gbc.insets = new Insets(0, 10, 0, 0);
-				p.add(instructor, gbc);
+				instructor.setFont(new Font("Segoe UI", Font.PLAIN, 22));
+				gbc3.gridy++;
+				gbc3.insets = new Insets(0, 0, 0, 0);
+				p3.add(instructor, gbc3);
+			}
+			//Max show 8 instructors
+			if(i == 7) {
+				i = ci.length;
 			}
 		}
 
-		gbc.gridy++;
-		gbc.insets = new Insets(20, 10, 0, 0);
-		p.add(title5, gbc);
+		gbc3.gridy++;
+		gbc3.insets = new Insets(20, 0, 0, 0);
+		p3.add(title5, gbc3);
 
 		//Add the courses	    
 		for(int i = 0; i < ci.length; i++) {
 			if(ci[i][0] != null) {
 				JLabel course = new JLabel(ci[i][0]);
-				course.setFont(new Font("Segoe UI", Font.PLAIN, 30));
-				gbc.gridy++;
-				gbc.insets = new Insets(0, 10, 0, 0);
-				p.add(course, gbc);
+				course.setFont(new Font("Segoe UI", Font.PLAIN, 22));
+				gbc3.gridy++;
+				gbc3.insets = new Insets(0, 0, 0, 0);
+				p3.add(course, gbc3);
+			}
+			//Max show 8 courses
+			if(i == 7) {
+				i = ci.length;
 			}
 		}
+		
+		JLabel empty = new JLabel();
+		gbc3.weighty = 1;
+		p3.add(empty, gbc3);
 
-
-
-
-		frame.getContentPane().setLayout(new BorderLayout());
-		frame.add(p, BorderLayout.PAGE_START);
-		JPanel white = new JPanel();
-		white.setBackground(Color.white);
-		frame.add(white);
-
+		
+		JFrame frame = new JFrame();
+		frame.setSize(950, 1000);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(new FlowLayout()); 
+		frame.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		frame.add(p);
+		frame.add(p3);
+		frame.getContentPane().setBackground(Color.white);
 		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
-
-
-
 	}
 }
 

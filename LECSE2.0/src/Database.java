@@ -17,8 +17,8 @@ public class Database {
 	private String major;
 	private String university;
 
-	//Attribute for sorting selection, default to course
-	private String sort = "course";
+	//Attribute for sorting selection
+	private String sort;
 
 	//Create a file for the lectures
 	private File lectureFile = new File("lectures.txt");
@@ -44,8 +44,8 @@ public class Database {
 	 * @param major the user's major
 	 * @param university the user's university
 	 * @param sortSelect how the user want's to sort the lectures
-	 * By course: sortSelect == course 
-	 * By instructor: sortSelect == instructor
+	 * By course: sortSelect == Course 
+	 * By instructor: sortSelect == Instructor
 	 * @throws IOException
 	 * @ This method saves user name, major, university and sorting selection to a text file
 	 */
@@ -85,6 +85,17 @@ public class Database {
 		// if file doesn't exists, then create it
 		if (!userInfoFile.exists()) {
 			userInfoFile.createNewFile();
+			//Add strings to the file
+			FileWriter fw = new FileWriter(userInfoFile.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("NoName");
+			bw.append(System.lineSeparator());
+			bw.write("NoMajor");
+			bw.append(System.lineSeparator());
+			bw.write("NoUniversity");
+			bw.append(System.lineSeparator());
+			bw.write("Course");
+			bw.close();
 		}
 
 		// Read data from file
